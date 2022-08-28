@@ -1,10 +1,11 @@
 {
   "private": true,
   "scripts": {
-    "dev": "next",
+    "dev": "npm run start-db && next",
     "build": "next build",
     "start": "next start",
-    "type-check": "tsc"
+    "type-check": "tsc",
+    "start-db": "docker start interview-prep-mongo || docker run --name interview-prep-mongo -p 27017:27017 -d mongo"
   },
   "dependencies": {
     "@emotion/react": "^11.10.0",
@@ -12,6 +13,7 @@
     "@fontsource/roboto": "^4.5.8",
     "@mui/icons-material": "^5.8.4",
     "@mui/material": "^5.10.1",
+    "mongodb": "^4.9.0",
     "next": "latest",
     "react": "^17.0.2",
     "react-dom": "^17.0.2"

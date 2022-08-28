@@ -15,11 +15,6 @@ export default function Header() {
             About
           </Typography>
         </Link>
-        <Link href="/users">
-          <Typography sx={{ cursor: 'pointer' }} variant="h5">
-            Users List
-          </Typography>
-        </Link>
         | <a href="/api/users">Users API</a>
       </Toolbar>
     </AppBar>

@@ -1,16 +1,21 @@
-import { NextApiRequest, NextApiResponse } from 'next'
-import { sampleUserData } from '../../../utils/sample-data'
+import { NextApiRequest, NextApiResponse } from 'next';
+import getConnection from '../../../db/getConnection';
 
-const handler = (_req: NextApiRequest, res: NextApiResponse) => {
+const handler = async (req: NextApiRequest, res: NextApiResponse) => {
   try {
-    if (!Array.isArray(sampleUserData)) {
-      throw new Error('Cannot find user data')
-    }
+    const db = await getConnection();
 
-    res.status(200).json(sampleUserData)
+    const movies = await db
+      .collection('questions')
+      .find({})
+      .sort({ metacritic: -1 })
+      .limit(20)
+      .toArray();
+
+    res.status(200).json(movies);
   } catch (err: any) {
-    res.status(500).json({ statusCode: 500, message: err.message })
+    res.status(500).json({ statusCode: 500, message: err.message });
   }
-}
+};
 
-export default handler
+export default handler;

@@ -5,6 +5,7 @@
     "build": "next build",
     "start": "next start",
     "type-check": "tsc",
+    "build-db": "tsc ./db/buildDb.ts --skipLibCheck && node ./db/buildDb.js && tsc --build --clean",
     "start-db": "docker start interview-prep-mongo || docker run --name interview-prep-mongo -p 27017:27017 -d mongo"
   },
   "dependencies": {
@@ -13,7 +14,8 @@
     "@fontsource/roboto": "^4.5.8",
     "@mui/icons-material": "^5.8.4",
     "@mui/material": "^5.10.1",
-    "mongodb": "^4.9.0",
+    "dotenv": "^16.0.2",
+    "mongoose": "^6.5.4",
     "next": "latest",
     "react": "^17.0.2",
     "react-dom": "^17.0.2"

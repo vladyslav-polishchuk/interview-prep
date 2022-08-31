@@ -1,16 +1,9 @@
 import { NextApiRequest, NextApiResponse } from 'next';
-import getConnection from '../../../db/getConnection';
+import { getQuestions } from '../../../db/api/questions';
 
 const handler = async (req: NextApiRequest, res: NextApiResponse) => {
   try {
-    const db = await getConnection();
-
-    const movies = await db
-      .collection('questions')
-      .find({})
-      .sort({ metacritic: -1 })
-      .limit(20)
-      .toArray();
+    const movies = await getQuestions();
 
     res.status(200).json(movies);
   } catch (err: any) {

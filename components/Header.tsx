@@ -15,7 +15,7 @@ export default function Header() {
             About
           </Typography>
         </Link>
-        | <a href="/api/users">Users API</a>
+        | <a href="/api/questions">Questions API</a>
       </Toolbar>
     </AppBar>
   );

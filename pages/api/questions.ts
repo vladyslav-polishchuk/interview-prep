@@ -5,11 +5,13 @@ import { getQuestions } from '../../db/api/questions';
 const handleGet = async (req: NextApiRequest, res: NextApiResponse) => {
   try {
     const { query } = req;
-    const { page, perPage } = query;
+    const { page, perPage, role, section } = query;
 
     const result = await getQuestions({
       page: Number(page),
       perPage: Number(perPage),
+      role: role as string,
+      section: section as string,
     });
 
     res.status(StatusCodes.OK).json(result);

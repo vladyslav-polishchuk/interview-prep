@@ -6,7 +6,7 @@
 
 export interface Question {
   role: 'junior' | 'middle' | 'senior';
-  section: 'general' | 'js' | 'react';
+  section: 'general' | 'js' | 'react' | 'frontend' | 'backend';
   title: string;
   answer: string;
 }

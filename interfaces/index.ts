@@ -4,7 +4,14 @@
 //
 // import { User } from 'path/to/interfaces';
 
-export type User = {
-  id: number
-  name: string
+export interface Question {
+  role: 'junior' | 'middle' | 'senior';
+  section: 'general' | 'js' | 'react';
+  title: string;
+  answer: string;
+}
+
+export interface PaginatedResult<T> {
+  data: T;
+  total: number;
 }

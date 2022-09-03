@@ -3,6 +3,12 @@ import '@fontsource/roboto/400.css';
 import '@fontsource/roboto/500.css';
 import '@fontsource/roboto/700.css';
 
-export default function App({ Component, pageProps }) {
-  return <Component {...pageProps} />;
+import { SessionProvider } from 'next-auth/react';
+
+export default function App({ Component, pageProps, session }) {
+  return (
+    <SessionProvider session={session}>
+      <Component {...pageProps} />
+    </SessionProvider>
+  );
 }

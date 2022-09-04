@@ -19,7 +19,8 @@ export default function Header() {
             About
           </Typography>
         </Link>
-        <a href="/api/questions">Questions API</a>
+
+        <Link href="/api/questions">Questions API</Link>
 
         {session && (
           <>

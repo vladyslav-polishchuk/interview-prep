@@ -19,10 +19,8 @@ const Layout = ({ children, title = 'This is the default title' }: Props) => (
     </Head>
 
     <Header />
-    
-    <Container maxWidth="md">
-      {children}
-    </Container>
+
+    <Container maxWidth="md">{children}</Container>
 
     <Footer />
   </div>

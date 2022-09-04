@@ -20,7 +20,7 @@ const handleGet = async (req: NextApiRequest, res: NextApiResponse) => {
   }
 };
 
-export default async (req: NextApiRequest, res: NextApiResponse) => {
+const index = async (req: NextApiRequest, res: NextApiResponse) => {
   try {
     const { method } = req;
 
@@ -35,3 +35,5 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
     res.status(StatusCodes.INTERNAL_SERVER_ERROR).json({ err: err.message });
   }
 };
+
+export default index;

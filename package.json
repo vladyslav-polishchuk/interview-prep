@@ -4,6 +4,7 @@
     "dev": "npm run start-db && next",
     "build": "next build",
     "start": "next start",
+    "lint": "next lint",
     "type-check": "tsc",
     "build-db": "tsc ./db/buildDb.ts --skipLibCheck && node ./db/buildDb.js && tsc --build --clean",
     "start-db": "docker start interview-prep-mongo || docker run --name interview-prep-mongo -p 27017:27017 -d mongo"
@@ -26,6 +27,8 @@
     "@types/node": "^12.12.21",
     "@types/react": "^17.0.2",
     "@types/react-dom": "^17.0.1",
+    "eslint": "^8.23.0",
+    "eslint-config-next": "12.2.5",
     "typescript": "4.7"
   }
 }

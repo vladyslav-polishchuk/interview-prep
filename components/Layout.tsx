@@ -10,13 +10,20 @@ type Props = {
   title?: string;
 };
 
-const Layout = ({ children, title = 'This is the default title' }: Props) => (
+const Layout = ({
+  children,
+  title = 'Blog for learning JavaScript',
+}: Props) => (
   <div>
     <Head>
       <title>{title}</title>
       <meta charSet="utf-8" />
       <meta name="viewport" content="initial-scale=1.0, width=device-width" />
       <link rel="icon" href="../static/favicon.ico" />
+      <meta
+        name="description"
+        content="The best blog for learning JavaScript."
+      />
     </Head>
 
     <Header />

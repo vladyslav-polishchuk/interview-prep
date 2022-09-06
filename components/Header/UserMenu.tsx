@@ -64,7 +64,7 @@ export default function Header({ user, signOut }: UserMenuProps) {
 
         <MenuItem
           onClick={() => {
-            router.push('/admin');
+            router.push('/admin/questions');
 
             handleClose();
           }}

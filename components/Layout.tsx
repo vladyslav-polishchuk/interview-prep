@@ -28,7 +28,7 @@ const Layout = ({
 
     <Header />
 
-    <Container maxWidth="md">{children}</Container>
+    <Container>{children}</Container>
 
     <Footer />
   </div>

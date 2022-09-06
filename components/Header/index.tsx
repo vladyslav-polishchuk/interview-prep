@@ -14,13 +14,8 @@ export default function Header() {
   const { data: session } = useSession();
 
   return (
-    <AppBar>
-      <Toolbar
-        sx={{ display: 'flex' }}
-        disableGutters
-        component={Container}
-        maxWidth="md"
-      >
+    <AppBar position="sticky">
+      <Toolbar sx={{ display: 'flex' }} disableGutters component={Container}>
         <Box
           sx={{
             display: 'flex',

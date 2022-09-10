@@ -38,3 +38,12 @@ export const getQuestions = async (
 
   return { data: questions, total };
 };
+
+export const deleteQuestions = async (questionIds: string[]) => {
+  await connectToDb();
+  // @ts-ignore
+  const ids = questionIds.map((id) => mongoose.Types.ObjectId(id));
+  const result = await Questions.deleteMany({_id: {$in: ids}});
+  
+  return result;
+};

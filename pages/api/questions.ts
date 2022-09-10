@@ -1,6 +1,6 @@
 import { StatusCodes } from 'http-status-codes';
 import { NextApiRequest, NextApiResponse } from 'next';
-import { getQuestions } from '../../db/api/questions';
+import { getQuestions, deleteQuestions } from '../../db/api/questions';
 
 const handleGet = async (req: NextApiRequest, res: NextApiResponse) => {
   try {
@@ -19,6 +19,15 @@ const handleGet = async (req: NextApiRequest, res: NextApiResponse) => {
     res.status(StatusCodes.INTERNAL_SERVER_ERROR).json({ err: err.message });
   }
 };
+const handleDelete = async (req: NextApiRequest, res: NextApiResponse) => {
+  try {
+    const result = await deleteQuestions(req.body);
+
+    res.status(StatusCodes.OK).json(result);
+  } catch (err: any) {
+    res.status(StatusCodes.INTERNAL_SERVER_ERROR).json({ err: err.message });
+  }
+};
 
 const index = async (req: NextApiRequest, res: NextApiResponse) => {
   try {
@@ -27,6 +36,8 @@ const index = async (req: NextApiRequest, res: NextApiResponse) => {
     switch (method) {
       case 'GET':
         return handleGet(req, res);
+      case 'DELETE':
+        return handleDelete(req, res);
       default:
         res.status(StatusCodes.METHOD_NOT_ALLOWED).json({});
         break;

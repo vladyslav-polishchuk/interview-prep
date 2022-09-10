@@ -1,11 +1,12 @@
 import { useState } from 'react';
-import { useQuery } from 'react-query';
+import { useQuery, useQueryClient } from 'react-query';
 
 import type { PaginatedResult, Question } from '../../../interfaces';
 
 import * as React from 'react';
 import Box from '@mui/material/Box';
 import { DataGrid, GridColDef } from '@mui/x-data-grid';
+import DropDownMenu from '../../DropDownMenu';
 
 const columns: GridColDef[] = [
   { field: 'role', headerName: 'Role', width: 90 },
@@ -24,11 +25,45 @@ const columns: GridColDef[] = [
     headerName: 'Answer',
     width: 200,
   },
+  {
+    field: 'actions',
+    headerName: '',
+    width: 60,
+    renderCell(option) {
+      const options = [
+        {
+          title: 'Delete',
+          onClick: () => {
+            const selectedRowsMap = option.api.getSelectedRows();
+            const selectedRows =
+              selectedRowsMap.size > 0
+                ? [...selectedRowsMap.keys()]
+                : [option.id];
+            deleteQuestions(selectedRows);
+          },
+        },
+      ];
+      return <DropDownMenu options={options} />;
+    },
+  },
 ];
 
 const fetchQuestions = async (page): Promise<PaginatedResult<Question[]>> => {
   const response = await fetch(`../api/questions`);
   const json = await response.json();
+  return json;
+};
+
+const deleteQuestions = async (ids: string[]): Promise<void> => {
+  const response = await fetch(`../api/questions`, {
+    method: 'DELETE',
+    body: JSON.stringify(ids),
+    headers: {
+      'Content-Type': 'application/json',
+    },
+  });
+  const json = await response.json();
+
   return json;
 };
 
@@ -39,8 +74,6 @@ const QuestionsPage = () => {
     () => fetchQuestions(page),
     {},
   );
-
-  console.log(data);
 
   return (
     <Box sx={{ height: 400, width: '100%' }} padding={1}>

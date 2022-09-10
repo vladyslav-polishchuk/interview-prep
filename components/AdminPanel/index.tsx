@@ -12,6 +12,7 @@ import QuestionMark from '@mui/icons-material/QuestionMark';
 import People from '@mui/icons-material/People';
 import QuestionsPage from './Pages/Questions';
 import UsersPage from './Pages/Users';
+import useScreenSize from '../../hooks/useScreenSize';
 
 const navigationItems = [
   {
@@ -33,6 +34,7 @@ const AdminPanel = () => {
   const { section } = router.query;
   const { Component } =
     navigationItems.find(({ route }) => route === section) ?? {};
+  const { isMobile } = useScreenSize();
 
   return (
     <Box sx={{ display: 'flex', py: 4 }}>
@@ -43,7 +45,7 @@ const AdminPanel = () => {
               <ListItemButton selected={route === section}>
                 <ListItemIcon>{icon}</ListItemIcon>
 
-                <ListItemText primary={title} />
+                {!isMobile && <ListItemText primary={title} />}
               </ListItemButton>
             </ListItem>
           </List>
@@ -52,7 +54,7 @@ const AdminPanel = () => {
 
       <Divider orientation="vertical" flexItem />
 
-      <Box>{Component && <Component />}</Box>
+      <Box sx={{ width: '100%' }}>{Component && <Component />}</Box>
     </Box>
   );
 };

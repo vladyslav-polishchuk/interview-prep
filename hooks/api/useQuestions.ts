@@ -1,21 +1,31 @@
 import { useQuery } from 'react-query';
-import type { PaginatedResult, Question } from '../../interfaces';
+import type {
+  PaginatedResult,
+  PaginationParams,
+  Question,
+  QuestionStatus,
+} from '../../interfaces';
 
-interface UseQuestionsProps {
-  page: number;
+interface UseQuestionsProps extends PaginationParams {
+  status?: QuestionStatus;
 }
 
-const fetchQuestions = async (page): Promise<PaginatedResult<Question[]>> => {
-  const response = await fetch(`../api/questions?page=${page || 1}`);
+const fetchQuestions = async (props): Promise<PaginatedResult<Question[]>> => {
+  const queryParams = new URLSearchParams();
+  Object.entries(props).forEach(([name, value]) => {
+    queryParams.set(name, `${value}`);
+  });
+
+  const url = `../api/questions?${queryParams}`;
+  const response = await fetch(url);
+
   return await response.json();
 };
 
 const useQuestions = (props: UseQuestionsProps) => {
-  const { page } = props;
-
   return useQuery<PaginatedResult<Question[]>>(
-    ['questions', 'user', page],
-    () => fetchQuestions(page),
+    ['questions', props.page, props.perPage, props.status],
+    () => fetchQuestions(props),
     {},
   );
 };

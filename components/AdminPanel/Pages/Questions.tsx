@@ -19,7 +19,12 @@ const columns: GridColDef[] = [
   {
     field: 'answer',
     headerName: 'Answer',
-    width: 200,
+    width: 180,
+  },
+  {
+    field: 'status',
+    headerName: 'Status',
+    width: 120,
   },
   {
     field: 'actions',
@@ -59,19 +64,26 @@ const deleteQuestions = async (ids: string[]): Promise<void> => {
 
 const QuestionsPage = () => {
   const [page, setPage] = useState(1);
-  const { data, isLoading, isFetched } = useQuestions({ page });
+  const [perPage, setPerPage] = useState(10);
+  const { data, isLoading, isFetched } = useQuestions({ page, perPage });
 
   return (
-    <Box sx={{ height: 400, width: '100%' }} padding={1}>
+    <Box sx={{ height: '75vh', width: '100%' }} padding={1}>
       <DataGrid
+        loading={isLoading || !isFetched}
         rows={data?.data ?? []}
+        rowCount={data?.total ?? 0}
         columns={columns}
-        pageSize={5}
-        rowsPerPageOptions={[5]}
         checkboxSelection
         disableSelectionOnClick
         experimentalFeatures={{ newEditingApi: true }}
         getRowId={(row) => row._id}
+        pageSize={perPage}
+        onPageSizeChange={(newPageSize) => setPerPage(newPageSize)}
+        rowsPerPageOptions={[10, 25, 50]}
+        page={page - 1}
+        onPageChange={(newPage) => setPage(newPage + 1)}
+        paginationMode="server"
       />
     </Box>
   );

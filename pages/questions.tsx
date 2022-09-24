@@ -14,7 +14,12 @@ import useQuestions from '../hooks/api/useQuestions';
 
 const QuestionsPage = () => {
   const [page, setPage] = useState(1);
-  const { data, isLoading, isFetched } = useQuestions({ page });
+  const [perPage, setPerPage] = useState(50);
+  const { data, isLoading } = useQuestions({
+    page,
+    perPage,
+    status: 'published',
+  });
   const { data: questions, total } = data ?? {};
 
   return (

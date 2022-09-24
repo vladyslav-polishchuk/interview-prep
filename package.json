@@ -2,7 +2,7 @@
   "private": true,
   "scripts": {
     "dev": "npm run start-db && next",
-    "build": "next build",
+    "build": "next build && npm run build-db",
     "start": "next start",
     "lint": "next lint",
     "type-check": "tsc",

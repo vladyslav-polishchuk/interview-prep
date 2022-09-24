@@ -1,17 +1,19 @@
 import { StatusCodes } from 'http-status-codes';
 import { NextApiRequest, NextApiResponse } from 'next';
 import { getQuestions, deleteQuestions } from '../../db/api/questions';
+import type { QuestionStatus } from '../../interfaces';
 
 const handleGet = async (req: NextApiRequest, res: NextApiResponse) => {
   try {
     const { query } = req;
-    const { page, perPage, role, section } = query;
+    const { page, perPage, role, section, status } = query;
 
     const result = await getQuestions({
       page: Number(page),
       perPage: Number(perPage),
       role: role as string,
       section: section as string,
+      status: status as QuestionStatus,
     });
 
     res.status(StatusCodes.OK).json(result);
@@ -19,6 +21,7 @@ const handleGet = async (req: NextApiRequest, res: NextApiResponse) => {
     res.status(StatusCodes.INTERNAL_SERVER_ERROR).json({ err: err.message });
   }
 };
+
 const handleDelete = async (req: NextApiRequest, res: NextApiResponse) => {
   try {
     const result = await deleteQuestions(req.body);

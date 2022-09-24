@@ -7,6 +7,7 @@ const questionsSchema = new mongoose.Schema({
   section: { type: String, unique: false, required: true },
   title: { type: String, unique: true, required: true, dropDups: true },
   answer: { type: String, unique: false, required: true },
+  status: { type: String, unique: false, required: true },
 });
 
 export const Questions =

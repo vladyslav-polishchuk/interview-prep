@@ -4,14 +4,22 @@
 //
 // import { User } from 'path/to/interfaces';
 
+export type QuestionStatus = 'draft' | 'published';
+
 export interface Question {
   role: 'junior' | 'middle' | 'senior';
-  section: 'general' | 'js' | 'react' | 'frontend' | 'backend';
+  section: 'general' | 'js' | 'react' | 'frontend' | 'backend' | 'database';
   title: string;
   answer: string;
+  status: QuestionStatus;
 }
 
 export interface PaginatedResult<T> {
   data: T;
   total: number;
+}
+
+export interface PaginationParams {
+  page: number;
+  perPage: number;
 }

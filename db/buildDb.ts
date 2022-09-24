@@ -13,7 +13,15 @@ async function buildDb() {
   await connect();
 
   const Questions = mongoose.model(QUESTIONS_TABLE_NAME);
-  await Questions.insertMany(questions);
+  await Questions.bulkWrite(
+    questions.map((question) => ({
+      updateOne: {
+        filter: { title: question.title },
+        update: { $set: question },
+        upsert: true,
+      },
+    })),
+  );
 
   process.exit();
 }

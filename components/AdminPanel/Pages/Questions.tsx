@@ -1,12 +1,8 @@
 import { useState } from 'react';
-import { useQuery, useQueryClient } from 'react-query';
-
-import type { PaginatedResult, Question } from '../../../interfaces';
-
-import * as React from 'react';
 import Box from '@mui/material/Box';
 import { DataGrid, GridColDef } from '@mui/x-data-grid';
 import DropDownMenu from '../../DropDownMenu';
+import useQuestions from '../../../hooks/api/useQuestions';
 
 const columns: GridColDef[] = [
   { field: 'role', headerName: 'Role', width: 90 },
@@ -48,12 +44,6 @@ const columns: GridColDef[] = [
   },
 ];
 
-const fetchQuestions = async (page): Promise<PaginatedResult<Question[]>> => {
-  const response = await fetch(`../api/questions`);
-  const json = await response.json();
-  return json;
-};
-
 const deleteQuestions = async (ids: string[]): Promise<void> => {
   const response = await fetch(`../api/questions`, {
     method: 'DELETE',
@@ -68,12 +58,8 @@ const deleteQuestions = async (ids: string[]): Promise<void> => {
 };
 
 const QuestionsPage = () => {
-  const page = useState(1);
-  const { data, isLoading, isFetched } = useQuery<PaginatedResult<Question[]>>(
-    ['questions', 'user', page],
-    () => fetchQuestions(page),
-    {},
-  );
+  const [page, setPage] = useState(1);
+  const { data, isLoading, isFetched } = useQuestions({ page });
 
   return (
     <Box sx={{ height: 400, width: '100%' }} padding={1}>

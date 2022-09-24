@@ -35,9 +35,13 @@ export default function Header() {
               About
             </Typography>
           </Link>
-        </Box>
 
-        <Link href="/api/questions">Questions API</Link>
+          <Link href="/questions">
+            <Typography sx={{ cursor: 'pointer' }} variant="h5">
+              Questions
+            </Typography>
+          </Link>
+        </Box>
 
         {session ? (
           <UserMenu user={session.user} signOut={signOut} />

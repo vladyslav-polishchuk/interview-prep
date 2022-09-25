@@ -38,8 +38,8 @@ const Contributor = (props: ContributorProps) => {
         <Box sx={{ display: 'flex', flexDirection: 'column' }}>
           <Avatar
             sx={{
-              width: '120px',
-              height: '120px',
+              width: '128px',
+              height: '128px',
               margin: '0 20px 20px 0',
               borderRadius: '10px',
             }}
@@ -50,8 +50,9 @@ const Contributor = (props: ContributorProps) => {
           <Box
             sx={{
               display: 'flex',
-              justifyContent: 'space-between',
+              justifyContent: 'space-around',
               marginRight: '20px',
+              height: '24px',
             }}
           >
             {socialNetworks.map(({ id, image, link }) =>

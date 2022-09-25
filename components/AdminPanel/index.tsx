@@ -30,31 +30,38 @@ const navigationItems = [
 ];
 
 const AdminPanel = () => {
+  const { isMobile } = useScreenSize();
   const router = useRouter();
   const { section } = router.query;
   const { Component } =
     navigationItems.find(({ route }) => route === section) ?? {};
-  const { isMobile } = useScreenSize();
+  const padding = isMobile ? 1 : 2;
 
   return (
-    <Box sx={{ display: 'flex', py: 4 }}>
-      <Box component="nav" padding={1}>
-        {navigationItems.map(({ route, icon, title }) => (
-          <List key={route}>
-            <ListItem disablePadding onClick={() => router.push(route)}>
+    <Box sx={{ display: 'flex', pt: 4 }}>
+      <Box component="nav" sx={{ px: padding }}>
+        <List disablePadding>
+          {navigationItems.map(({ route, icon, title }) => (
+            <ListItem
+              disablePadding
+              key={route}
+              onClick={() => router.push(route)}
+            >
               <ListItemButton selected={route === section}>
-                <ListItemIcon>{icon}</ListItemIcon>
+                <ListItemIcon sx={{ minWidth: 2 }}>{icon}</ListItemIcon>
 
-                {!isMobile && <ListItemText primary={title} />}
+                {!isMobile && <ListItemText primary={title} sx={{ ml: 1 }} />}
               </ListItemButton>
             </ListItem>
-          </List>
-        ))}
+          ))}
+        </List>
       </Box>
 
       <Divider orientation="vertical" flexItem />
 
-      <Box sx={{ width: '100%' }}>{Component && <Component />}</Box>
+      <Box sx={{ width: '100%', px: padding }}>
+        {Component && <Component />}
+      </Box>
     </Box>
   );
 };

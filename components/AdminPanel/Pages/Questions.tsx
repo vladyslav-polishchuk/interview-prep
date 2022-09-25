@@ -100,7 +100,7 @@ const QuestionsPage = () => {
   const { data, isLoading, isFetched } = useQuestions({ page, perPage });
 
   return (
-    <Box sx={{ height: '75vh', width: '100%' }} padding={1}>
+    <Box sx={{ height: '75vh', width: '100%' }}>
       <DataGrid
         loading={isLoading || !isFetched}
         rows={data?.data ?? []}

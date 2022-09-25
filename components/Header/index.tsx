@@ -30,12 +30,6 @@ export default function Header() {
             </Typography>
           </Link>
 
-          <Link href="/about">
-            <Typography sx={{ cursor: 'pointer' }} variant="h5">
-              About
-            </Typography>
-          </Link>
-
           <Link href="/questions">
             <Typography sx={{ cursor: 'pointer' }} variant="h5">
               Questions

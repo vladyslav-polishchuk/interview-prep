@@ -44,6 +44,16 @@ export const getQuestions = async (
   return { data: questions, total };
 };
 
+export const updateQuestion = async (
+  question: Partial<Question>,
+): Promise<void> => {
+  await connectToDb();
+
+  return Questions.findOneAndUpdate({ _id: question._id }, question, {
+    upsert: false,
+  });
+};
+
 export const deleteQuestions = async (questionIds: string[]) => {
   await connectToDb();
   // @ts-ignore

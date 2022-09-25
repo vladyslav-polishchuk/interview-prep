@@ -7,6 +7,7 @@
 export type QuestionStatus = 'draft' | 'published';
 
 export interface Question {
+  _id: string;
   role: 'junior' | 'middle' | 'senior';
   section: 'general' | 'js' | 'react' | 'frontend' | 'backend' | 'database';
   title: string;

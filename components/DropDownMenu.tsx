@@ -3,10 +3,12 @@ import IconButton from '@mui/material/IconButton';
 import Menu from '@mui/material/Menu';
 import MenuItem from '@mui/material/MenuItem';
 import MoreVertIcon from '@mui/icons-material/MoreVert';
+import { Typography } from '@mui/material';
 
 interface DropDownMenuOption {
   title: string;
   onClick: () => void;
+  disabled?: boolean;
   icon?: React.ReactNode;
 }
 
@@ -54,8 +56,13 @@ export default function DropDownMenu(props: DropDownMenuProps) {
         }}
       >
         {props.options.map((option) => (
-          <MenuItem key={option.title} onClick={option.onClick}>
-            {option.title}
+          <MenuItem
+            key={option.title}
+            onClick={option.onClick}
+            disabled={option.disabled}
+          >
+            {option.icon}
+            <Typography sx={{ ml: 1 }}>{option.title}</Typography>
           </MenuItem>
         ))}
       </Menu>

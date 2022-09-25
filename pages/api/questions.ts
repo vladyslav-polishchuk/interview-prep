@@ -1,6 +1,10 @@
 import { StatusCodes } from 'http-status-codes';
 import { NextApiRequest, NextApiResponse } from 'next';
-import { getQuestions, deleteQuestions } from '../../db/api/questions';
+import {
+  getQuestions,
+  updateQuestion,
+  deleteQuestions,
+} from '../../db/api/questions';
 import type { QuestionStatus } from '../../interfaces';
 
 const handleGet = async (req: NextApiRequest, res: NextApiResponse) => {
@@ -15,6 +19,16 @@ const handleGet = async (req: NextApiRequest, res: NextApiResponse) => {
       section: section as string,
       status: status as QuestionStatus,
     });
+
+    res.status(StatusCodes.OK).json(result);
+  } catch (err: any) {
+    res.status(StatusCodes.INTERNAL_SERVER_ERROR).json({ err: err.message });
+  }
+};
+
+const handleUpdate = async (req: NextApiRequest, res: NextApiResponse) => {
+  try {
+    const result = await updateQuestion(req.body);
 
     res.status(StatusCodes.OK).json(result);
   } catch (err: any) {
@@ -39,6 +53,8 @@ const index = async (req: NextApiRequest, res: NextApiResponse) => {
     switch (method) {
       case 'GET':
         return handleGet(req, res);
+      case 'PATCH':
+        return handleUpdate(req, res);
       case 'DELETE':
         return handleDelete(req, res);
       default:

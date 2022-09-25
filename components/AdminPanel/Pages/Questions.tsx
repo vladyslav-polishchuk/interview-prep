@@ -1,8 +1,12 @@
 import { useState } from 'react';
+import DeleteIcon from '@mui/icons-material/Delete';
+import CheckCircleIcon from '@mui/icons-material/CheckCircle';
+import UnpublishedIcon from '@mui/icons-material/Unpublished';
 import Box from '@mui/material/Box';
 import { DataGrid, GridColDef } from '@mui/x-data-grid';
 import DropDownMenu from '../../DropDownMenu';
 import useQuestions from '../../../hooks/api/useQuestions';
+import type { Question } from '../../../interfaces';
 
 const columns: GridColDef[] = [
   { field: 'role', headerName: 'Role', width: 90 },
@@ -31,9 +35,13 @@ const columns: GridColDef[] = [
     headerName: '',
     width: 60,
     renderCell(option) {
+      const question = option.row as Question;
+      const isDraft = question.status === 'draft';
+
       const options = [
         {
           title: 'Delete',
+          icon: <DeleteIcon />,
           onClick: () => {
             const selectedRowsMap = option.api.getSelectedRows();
             const selectedRows =
@@ -43,7 +51,19 @@ const columns: GridColDef[] = [
             deleteQuestions(selectedRows);
           },
         },
+        {
+          title: isDraft ? 'Publish' : 'Convert to Draft',
+          icon: isDraft ? <CheckCircleIcon /> : <UnpublishedIcon />,
+          disabled: option.api.getSelectedRows().size > 1,
+          onClick: () => {
+            updateQuestion({
+              ...question,
+              status: isDraft ? 'published' : 'draft',
+            });
+          },
+        },
       ];
+
       return <DropDownMenu options={options} />;
     },
   },
@@ -60,6 +80,18 @@ const deleteQuestions = async (ids: string[]): Promise<void> => {
   const json = await response.json();
 
   return json;
+};
+
+const updateQuestion = async (question) => {
+  const response = await fetch(`../api/questions`, {
+    method: 'PATCH',
+    body: JSON.stringify(question),
+    headers: {
+      'Content-Type': 'application/json',
+    },
+  });
+
+  return await response.json();
 };
 
 const QuestionsPage = () => {

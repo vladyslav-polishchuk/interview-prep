@@ -12,6 +12,7 @@ import {
 } from '@mui/material';
 import Layout from '../components/Layout';
 import useQuestions from '../hooks/api/useQuestions';
+import Markdown from '../components/common/Markdown';
 
 const QuestionsPage = () => {
   const [page, setPage] = useState(1);
@@ -58,7 +59,7 @@ const QuestionsPage = () => {
                     </Stack>
                   </AccordionSummary>
                   <AccordionDetails>
-                    <Typography>{question.answer}</Typography>
+                    <Markdown>{question.answer}</Markdown>
                   </AccordionDetails>
                 </Accordion>
               );

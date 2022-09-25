@@ -5,6 +5,7 @@ import {
   Accordion,
   AccordionDetails,
   AccordionSummary,
+  Box,
   Chip,
   Stack,
   Typography,
@@ -32,33 +33,37 @@ const QuestionsPage = () => {
         </Link>
       </p>
 
-      {isLoading
-        ? 'LOADING...'
-        : questions.map((question) => {
-            return (
-              <Accordion key={question.title}>
-                <AccordionSummary expandIcon={<ExpandMoreIcon />}>
-                  <Typography alignSelf="center">{question.title}</Typography>
+      <Box sx={{ my: 2 }}>
+        {isLoading
+          ? 'LOADING...'
+          : questions.map((question) => {
+              return (
+                <Accordion key={question.title}>
+                  <AccordionSummary expandIcon={<ExpandMoreIcon />}>
+                    <Typography alignSelf="center" sx={{ flexGrow: 1 }}>
+                      {question.title}
+                    </Typography>
 
-                  <Stack direction="row" spacing={1}>
-                    <Chip
-                      label={question.role}
-                      color="primary"
-                      variant="outlined"
-                    />
-                    <Chip
-                      label={question.section}
-                      color="primary"
-                      variant="outlined"
-                    />
-                  </Stack>
-                </AccordionSummary>
-                <AccordionDetails>
-                  <Typography>{question.answer}</Typography>
-                </AccordionDetails>
-              </Accordion>
-            );
-          })}
+                    <Stack direction="row" spacing={1} sx={{ mr: 1 }}>
+                      <Chip
+                        label={question.role}
+                        color="primary"
+                        variant="outlined"
+                      />
+                      <Chip
+                        label={question.section}
+                        color="primary"
+                        variant="outlined"
+                      />
+                    </Stack>
+                  </AccordionSummary>
+                  <AccordionDetails>
+                    <Typography>{question.answer}</Typography>
+                  </AccordionDetails>
+                </Accordion>
+              );
+            })}
+      </Box>
     </Layout>
   );
 };

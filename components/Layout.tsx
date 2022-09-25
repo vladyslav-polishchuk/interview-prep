@@ -4,6 +4,7 @@ import Footer from './Footer';
 
 import type { ReactNode } from 'react';
 import Container from '@mui/material/Container';
+import { Box } from '@mui/material';
 
 type Props = {
   children?: ReactNode;
@@ -14,7 +15,7 @@ const Layout = ({
   children,
   title = 'Blog for learning JavaScript',
 }: Props) => (
-  <div>
+  <Box sx={{ display: 'flex', flexDirection: 'column' }} minHeight="100vh">
     <Head>
       <title>{title}</title>
       <meta charSet="utf-8" />
@@ -28,10 +29,10 @@ const Layout = ({
 
     <Header />
 
-    <Container>{children}</Container>
+    <Container sx={{ flexGrow: 1 }}>{children}</Container>
 
     <Footer />
-  </div>
+  </Box>
 );
 
 export default Layout;

@@ -1,19 +1,25 @@
 import NextLink from 'next/link';
-import { Link as MuiLink } from '@mui/material';
-
+import { Link as MuiLink, type SxProps } from '@mui/material';
 import type { ReactNode } from 'react';
 
 interface LinkProps {
   href: string;
   children: ReactNode;
+  sx?: SxProps;
 }
 
 export default function Link(props: LinkProps) {
-  const { href, children } = props;
+  const { href, children, sx = {} } = props;
 
   return (
-    <MuiLink component={NextLink} href={href}>
-      {children}
-    </MuiLink>
+    <NextLink href={href}>
+      <MuiLink
+        sx={{ cursor: 'pointer', ...sx }}
+        color="inherit"
+        underline="none"
+      >
+        {children}
+      </MuiLink>
+    </NextLink>
   );
 }

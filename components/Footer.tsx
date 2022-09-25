@@ -1,15 +1,25 @@
-import { Container, Divider } from '@mui/material';
+import { Box, Container, Stack, Typography, useTheme } from '@mui/material';
 import Link from './Link';
 
 export default function Footer() {
-  return (
-    <footer>
-      <Divider />
+  const theme = useTheme();
 
-      <Container>
-        <span>I&apos;m here to stay (Footer)</span>
-        <Link href="/contributors">Contributor</Link>
+  return (
+    <Box
+      component="footer"
+      sx={{ backgroundColor: theme.palette.primary.main, mt: 2, py: 2 }}
+    >
+      <Container sx={{ display: 'flex' }}>
+        <Typography alignSelf="center" sx={{ flexGrow: 1 }} color="white">
+          Copyright © 2022
+        </Typography>
+
+        <Stack direction="row" spacing={2}>
+          <Link href="/about" sx={{ color: 'white' }}>
+            About
+          </Link>
+        </Stack>
       </Container>
-    </footer>
+    </Box>
   );
 }

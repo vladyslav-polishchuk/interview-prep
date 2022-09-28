@@ -16,6 +16,38 @@ const questions: Array<Partial<Question>> = [
   {
     section: 'general',
     title: 'What HTTP response status codes do you know?',
+    answer: `## HTTP Status Codes
+
+- **1xx** Informational
+    - **100 Continue.** This interim response indicates that the client should continue the request or ignore the response if the request is already finished.
+    - etc
+- **2xx** Success
+    - **200 OK.** The request succeeded.
+    - **201 Created.** The request succeeded, and a new resource was created as a result.
+    - **204 No Content.** There is no content to send for this request, but the headers may be useful.
+    - etc.
+- **3xx** Redirection
+    - **301 Moved permanently.** The URL of the requested resource has been changed permanently. The new URL is given in the response.
+    - **302 Found.** The URI of requested resource has been changed temporarily.
+    - **304 Not Modified.** Used for caching purposes. It tells the client that the response has not been modified and client can continue to use the same cached version of the response.
+    - etc.
+- **4xx** Client error
+    - **400 Bad Request.** The server cannot process the request due to something that is perceived to be a client error (e.g., malformed request syntax, invalid request message framing, or deceptive request routing).
+    - **401 Unauthorized.** The client must authenticate itself to get the requested response.
+    - **403 Forbidden.** The client does not have access rights to the content. Unlike 401 Unauthorized, the client's identity is known to the server.
+    - **404 Not Found.** The server can not find the requested resource.
+    - **405 Method Not Allowed.** The request method is known by the server but is not supported by the target resource. For example, an API may not allow calling DELETE to remove a resource.
+    - etc.
+- **5xx** Server error
+    - **500 Internal Server Error.** The server has encountered a situation it does not know how to handle.
+    - **501 Not Implemented.** The request method is not supported by the server and cannot be handled.
+    - **503 Service Unavailable.** The server is not ready to handle the request. Common causes are a server that is down for maintenance or that is overloaded.
+    - etc.`,
+    status: 'published',
+  },
+  {
+    section: 'general',
+    title: 'Describe the structure of HTTP Request and Response',
     answer: 'No answer yet',
     status: 'draft',
   },

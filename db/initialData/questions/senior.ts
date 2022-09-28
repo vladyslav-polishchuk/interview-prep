@@ -16,9 +16,9 @@ const questions: Array<Partial<Question>> = [
   },
   {
     section: 'general',
-    title: 'Tell us in detail about how HTTPS works.',
-    answer: 'No answer yet',
-    status: 'draft',
+    title: 'Describe how the HTTPS protocol works',
+    answer: `No answer yet`,
+    status: 'published',
   },
   {
     section: 'general',
@@ -112,15 +112,25 @@ const questions: Array<Partial<Question>> = [
   },
   {
     section: 'general',
-    title: 'Describe SOLID and JavaScript.',
+    title: 'Describe SOLID principles in JavaScript.',
     answer: 'No answer yet',
     status: 'draft',
   },
   {
     section: 'general',
-    title: 'Symmetric vs asymmetric encryption.',
-    answer: 'No answer yet',
-    status: 'draft',
+    title:
+      'What is the difference between symmetric and asymmetric encryption?',
+    answer: `## Symmetric encryption
+- Uses a single, shared key to encrypt and decrypt information.
+- Does not scale well: may be less secure when the key is shared with many entities.
+- Very fast to encrypt and decrypt data.
+
+## Asymmetric encryption (public key cryptography)
+- Uses two separate keys: public and private. The public key is used to encrypt information and may be shared. The private key is the only key that can decrypt the information and should always be kept confidential.
+- Very secure.
+- Slow and resource-heavy data encryption and decryption.
+- Often combined with symmetric encryption to get a fast and secure way to transfer data (example: HTTPS)`,
+    status: 'published',
   },
   {
     section: 'js',

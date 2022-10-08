@@ -4,20 +4,30 @@ import {
   getQuestions,
   updateQuestion,
   deleteQuestions,
-} from '../../db/api/questions';
+} from '../../prisma/api/questions';
 import type { QuestionStatus } from '../../interfaces';
 
 const handleGet = async (req: NextApiRequest, res: NextApiResponse) => {
   try {
     const { query } = req;
-    const { page, perPage, role, section, status } = query;
+    const { page, perPage, role, section, status, sortBy, sortDirection } =
+      query;
+
+    const where = {
+      ...(typeof role === 'string' && { role }),
+      ...(typeof section === 'string' && { section }),
+      ...(typeof status === 'string' && { status }),
+    };
+    const orderBy =
+      typeof sortBy === 'string' ? { [sortBy]: sortDirection } : undefined;
 
     const result = await getQuestions({
       page: Number(page),
       perPage: Number(perPage),
-      role: role as string,
-      section: section as string,
-      status: status as QuestionStatus,
+      // @ts-ignore
+      where,
+      // @ts-ignore
+      orderBy,
     });
 
     res.status(StatusCodes.OK).json(result);

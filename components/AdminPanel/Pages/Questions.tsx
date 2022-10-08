@@ -109,7 +109,6 @@ const QuestionsPage = () => {
         checkboxSelection
         disableSelectionOnClick
         experimentalFeatures={{ newEditingApi: true }}
-        getRowId={(row) => row._id}
         pageSize={perPage}
         onPageSizeChange={(newPageSize) => setPerPage(newPageSize)}
         rowsPerPageOptions={[10, 25, 50]}

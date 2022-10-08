@@ -10,7 +10,9 @@ interface UseQuestionsProps extends PaginationParams {
   status?: QuestionStatus;
 }
 
-const fetchQuestions = async (props): Promise<PaginatedResult<Question[]>> => {
+export const fetchQuestions = async (
+  props,
+): Promise<PaginatedResult<Question[]>> => {
   const queryParams = new URLSearchParams();
   Object.entries(props).forEach(([name, value]) => {
     queryParams.set(name, `${value}`);

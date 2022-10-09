@@ -7,6 +7,7 @@ import {
   AccordionSummary,
   Box,
   Chip,
+  Skeleton,
   Stack,
   Typography,
 } from '@mui/material';
@@ -23,6 +24,37 @@ const QuestionsPage = () => {
     status: 'published',
   });
   const { data: questions, total } = data ?? {};
+  const content = isLoading
+    ? [...Array(10)].map((val, index) => (
+        <Skeleton variant="rounded" height={56} key={index} sx={{ mb: 1 }} />
+      ))
+    : questions.map((question) => {
+        return (
+          <Accordion key={question.title} sx={{ mb: 1 }}>
+            <AccordionSummary expandIcon={<ExpandMoreIcon />}>
+              <Typography alignSelf="center" sx={{ flexGrow: 1 }}>
+                {question.title}
+              </Typography>
+
+              <Stack direction="row" spacing={1} sx={{ mr: 1 }}>
+                <Chip
+                  label={question.role}
+                  color="primary"
+                  variant="outlined"
+                />
+                <Chip
+                  label={question.section}
+                  color="primary"
+                  variant="outlined"
+                />
+              </Stack>
+            </AccordionSummary>
+            <AccordionDetails>
+              <Markdown>{question.answer}</Markdown>
+            </AccordionDetails>
+          </Accordion>
+        );
+      });
 
   return (
     <Layout title="Interview Questions">
@@ -34,37 +66,7 @@ const QuestionsPage = () => {
         </Link>
       </p>
 
-      <Box sx={{ my: 2 }}>
-        {isLoading
-          ? 'LOADING...'
-          : questions.map((question) => {
-              return (
-                <Accordion key={question.title}>
-                  <AccordionSummary expandIcon={<ExpandMoreIcon />}>
-                    <Typography alignSelf="center" sx={{ flexGrow: 1 }}>
-                      {question.title}
-                    </Typography>
-
-                    <Stack direction="row" spacing={1} sx={{ mr: 1 }}>
-                      <Chip
-                        label={question.role}
-                        color="primary"
-                        variant="outlined"
-                      />
-                      <Chip
-                        label={question.section}
-                        color="primary"
-                        variant="outlined"
-                      />
-                    </Stack>
-                  </AccordionSummary>
-                  <AccordionDetails>
-                    <Markdown>{question.answer}</Markdown>
-                  </AccordionDetails>
-                </Accordion>
-              );
-            })}
-      </Box>
+      <Box sx={{ my: 2 }}>{content}</Box>
     </Layout>
   );
 };

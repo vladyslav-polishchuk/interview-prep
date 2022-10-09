@@ -1,4 +1,3 @@
-import { useState } from 'react';
 import Link from 'next/link';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import {
@@ -6,26 +5,33 @@ import {
   AccordionDetails,
   AccordionSummary,
   Box,
+  Button,
   Chip,
+  CircularProgress,
   Skeleton,
   Stack,
   Typography,
 } from '@mui/material';
 import Layout from '../components/Layout';
-import useQuestions from '../hooks/api/useQuestions';
+import { useInfiniteQuestions } from '../hooks/api/useQuestions';
 import Markdown from '../components/common/Markdown';
 
+const QUESTIONS_PER_PAGE = 5;
+
 const QuestionsPage = () => {
-  const [page, setPage] = useState(1);
-  const [perPage, setPerPage] = useState(20);
-  const { data, isLoading } = useQuestions({
-    page,
-    perPage,
-    status: 'published',
-  });
-  const { data: questions, total } = data ?? {};
+  const { data, isLoading, hasNextPage, fetchNextPage, isFetchingNextPage } =
+    useInfiniteQuestions({
+      page: 1,
+      perPage: QUESTIONS_PER_PAGE,
+      status: 'published',
+    });
+  const pages = data?.pages ?? [];
+  const questions = pages.reduce((acc, page) => {
+    return [...acc, ...page.data];
+  }, []);
+
   const content = isLoading
-    ? [...Array(page)].map((val, index) => (
+    ? [...Array(QUESTIONS_PER_PAGE)].map((val, index) => (
         <Skeleton variant="rounded" height={56} key={index} sx={{ mb: 1 }} />
       ))
     : questions.map((question) => {
@@ -66,7 +72,23 @@ const QuestionsPage = () => {
         </Link>
       </p>
 
-      <Box sx={{ my: 2 }}>{content}</Box>
+      <Box sx={{ my: 2, display: 'flex', flexDirection: 'column' }}>
+        {content}
+
+        {hasNextPage && (
+          <Button
+            variant="outlined"
+            sx={{ width: '150px', alignSelf: 'center' }}
+            onClick={() => fetchNextPage()}
+            disabled={isLoading || isFetchingNextPage}
+          >
+            {isFetchingNextPage && (
+              <CircularProgress sx={{ mr: 1 }} size="20px" />
+            )}
+            Load More
+          </Button>
+        )}
+      </Box>
     </Layout>
   );
 };

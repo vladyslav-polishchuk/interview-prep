@@ -5,7 +5,7 @@ import UnpublishedIcon from '@mui/icons-material/Unpublished';
 import Box from '@mui/material/Box';
 import { DataGrid, GridColDef } from '@mui/x-data-grid';
 import DropDownMenu from '../../DropDownMenu';
-import useQuestions from '../../../hooks/api/useQuestions';
+import { useQuestions } from '../../../hooks/api/useQuestions';
 import type { Question } from '../../../types';
 
 const columns: GridColDef[] = [

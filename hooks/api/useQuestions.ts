@@ -1,4 +1,4 @@
-import { useQuery } from 'react-query';
+import { useInfiniteQuery, useQuery } from 'react-query';
 import type {
   PaginatedResult,
   PaginationParams,
@@ -24,7 +24,7 @@ export const fetchQuestions = async (
   return await response.json();
 };
 
-const useQuestions = (props: UseQuestionsProps) => {
+export const useQuestions = (props: UseQuestionsProps) => {
   return useQuery<PaginatedResult<Question[]>>(
     ['questions', props.page, props.perPage, props.status],
     () => fetchQuestions(props),
@@ -32,4 +32,17 @@ const useQuestions = (props: UseQuestionsProps) => {
   );
 };
 
-export default useQuestions;
+export const useInfiniteQuestions = (props: UseQuestionsProps) => {
+  return useInfiniteQuery<PaginatedResult<Question[]>>(
+    ['questions', props.page, props.perPage, props.status],
+    ({ pageParam }) =>
+      fetchQuestions({ ...props, page: pageParam ?? props.page }),
+    {
+      getNextPageParam: (lastPage, allPages = []) => {
+        if (lastPage.data.length === props.perPage) {
+          return allPages.length + 1;
+        }
+      },
+    },
+  );
+};

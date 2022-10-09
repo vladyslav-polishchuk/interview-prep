@@ -5,7 +5,7 @@ import {
   updateQuestion,
   deleteQuestions,
 } from '../../prisma/api/questions';
-import type { QuestionStatus } from '../../interfaces';
+import type { QuestionStatus } from '../../types';
 
 const handleGet = async (req: NextApiRequest, res: NextApiResponse) => {
   try {

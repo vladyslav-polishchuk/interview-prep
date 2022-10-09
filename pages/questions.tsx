@@ -17,7 +17,7 @@ import Markdown from '../components/common/Markdown';
 
 const QuestionsPage = () => {
   const [page, setPage] = useState(1);
-  const [perPage, setPerPage] = useState(50);
+  const [perPage, setPerPage] = useState(20);
   const { data, isLoading } = useQuestions({
     page,
     perPage,
@@ -25,7 +25,7 @@ const QuestionsPage = () => {
   });
   const { data: questions, total } = data ?? {};
   const content = isLoading
-    ? [...Array(10)].map((val, index) => (
+    ? [...Array(page)].map((val, index) => (
         <Skeleton variant="rounded" height={56} key={index} sx={{ mb: 1 }} />
       ))
     : questions.map((question) => {

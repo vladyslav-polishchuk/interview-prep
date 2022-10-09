@@ -1,9 +1,5 @@
 import prisma from '..';
-import type {
-  PaginatedResult,
-  PaginationParams,
-  Question,
-} from '../../interfaces';
+import type { PaginatedResult, PaginationParams, Question } from '../../types';
 
 interface GetQuestionsOptions extends PaginationParams {
   where: Partial<Question>;

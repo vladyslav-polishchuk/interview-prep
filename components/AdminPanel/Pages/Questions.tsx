@@ -6,7 +6,7 @@ import Box from '@mui/material/Box';
 import { DataGrid, GridColDef } from '@mui/x-data-grid';
 import DropDownMenu from '../../DropDownMenu';
 import useQuestions from '../../../hooks/api/useQuestions';
-import type { Question } from '../../../interfaces';
+import type { Question } from '../../../types';
 
 const columns: GridColDef[] = [
   { field: 'role', headerName: 'Role', width: 90 },

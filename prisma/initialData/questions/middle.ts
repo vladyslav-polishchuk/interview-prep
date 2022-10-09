@@ -1,4 +1,4 @@
-import type { Question } from '../../../interfaces';
+import type { Question } from '../../../types';
 
 const questions: Array<Partial<Question>> = [
   {

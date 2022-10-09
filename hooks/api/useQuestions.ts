@@ -4,7 +4,7 @@ import type {
   PaginationParams,
   Question,
   QuestionStatus,
-} from '../../interfaces';
+} from '../../types';
 
 interface UseQuestionsProps extends PaginationParams {
   status?: QuestionStatus;

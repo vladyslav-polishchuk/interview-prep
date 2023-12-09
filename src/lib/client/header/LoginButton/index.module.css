@@ -1,4 +1,7 @@
 .root {
+  display: flex;
+  gap: 8px;
+  align-items: center;
   color: #fff;
   height: 35px;
   padding: 0 10px;

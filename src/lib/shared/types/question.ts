@@ -1,5 +1,5 @@
 export interface Question {
   id: string;
-  title: string;
+  name: string;
   complexity: number;
 }

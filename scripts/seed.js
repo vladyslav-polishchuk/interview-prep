@@ -1,6 +1,5 @@
 const { sql } = require('@vercel/postgres');
-const { questions, users } = require('./placeholder-data.js');
-// const bcrypt = require('bcrypt');
+const { questions } = require('./questions.js');
 
 async function seedUsers() {
   try {
@@ -17,16 +16,16 @@ async function seedUsers() {
 
     console.log(`Created "users" table`);
 
-    await Promise.all(
-      users.map(async (user) => {
-        const hashedPassword = 'password'; //await bcrypt.hash(user.password, 10);
-        return sql`
-        INSERT INTO users (id, name, email, password)
-        VALUES (${user.id}, ${user.name}, ${user.email}, ${hashedPassword})
-        ON CONFLICT (id) DO NOTHING;
-      `;
-      })
-    );
+    // await Promise.all(
+    //   users.map(async (user) => {
+    //     const hashedPassword = 'password'; //await bcrypt.hash(user.password, 10);
+    //     return sql`
+    //     INSERT INTO users (id, name, email, password)
+    //     VALUES (${user.id}, ${user.name}, ${user.email}, ${hashedPassword})
+    //     ON CONFLICT (id) DO NOTHING;
+    //   `;
+    //   })
+    // );
 
     console.log(`Seeded ${users.length} users`);
   } catch (error) {

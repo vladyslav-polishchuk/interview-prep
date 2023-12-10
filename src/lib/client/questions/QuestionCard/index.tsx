@@ -6,7 +6,7 @@ export default function QuestionCard({ question }: { question: Question }) {
   return (
     <div className={styles.root}>
       <div className={styles.status}></div>
-      <Link href={'questions/' + question.id}>{question.title}</Link>
+      <Link href={'questions/' + question.id}>{question.name}</Link>
       <div className={styles.color}></div>
     </div>
   );

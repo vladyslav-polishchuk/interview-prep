@@ -32,8 +32,32 @@
   height: 100%;
   width: 30px;
   margin-left: auto;
+  background-color: #383535;
+  box-shadow: 8px 0 0 0 #110f0f;
+}
+
+.color-easy {
+  composes: color;
   background-color: rgb(52, 237, 67);
   box-shadow: rgb(32, 173, 43) 8px 0px 0px 0px;
+}
+
+.color-medium {
+  composes: color;
+  background-color: rgb(230, 255, 52);
+  box-shadow: rgb(230, 230, 5) 8px 0px 0px 0px;
+}
+
+.color-hard {
+  composes: color;
+  background-color: rgb(237, 188, 52);
+  box-shadow: rgb(237, 150, 52) 8px 0px 0px 0px;
+}
+
+.color-very-hard {
+  composes: color;
+  background-color: #ef5151;
+  box-shadow: 8px 0 0 0 #c62121;
 }
 
 .link {

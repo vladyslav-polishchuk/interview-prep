@@ -10,7 +10,7 @@
 
 .grouping-container {
   display: grid;
-  grid-template: 'random groupby filter' 50px/160px auto 160px;
+  grid-template: 'random groupby filter' 50px/170px auto 170px;
   margin: 100px auto 30px;
   max-width: 1600px;
   padding: 0 5px;
@@ -22,10 +22,15 @@
 
 .groupby {
   grid-area: groupby;
+}
+
+.groupby2 {
+  margin: 0 auto;
   max-width: 550px;
 }
 
 .group-button {
+  color: var(--color-primary);
   background-color: transparent;
   border: none;
   border-radius: 4px;
@@ -38,18 +43,20 @@
   z-index: 1;
 }
 
+.group-button:hover {
+  color: #02203c;
+}
+
 .filter {
   grid-area: filter;
 }
 
 .filter-button {
-  background-color: #fff;
-  box-shadow: 0 2px 4px rgba(50, 50, 93, 0.1);
   color: #02203c;
   align-items: center;
   border: none;
   border-radius: 4px;
-  color: #626ee3;
+  color: var(--color-primary);
   display: flex;
   font-family: Lato, Helvetica, Arial, sans-serif;
   font-weight: 600;
@@ -60,8 +67,14 @@
   transition: background-color 0.2s, box-shadow 0.2s, color 0.2s;
 }
 
+.filter-button:hover {
+  color: #02203c;
+}
+
 .icon {
   margin-right: 10px;
+  width: 25px;
+  height: 25px;
 }
 
 .pick-random {
@@ -69,7 +82,7 @@
   background-color: #f6f9fc;
   border: none;
   border-radius: 4px;
-  color: #626ee3;
+  color: var(--color-primary);
   display: flex;
   font-family: Lato, Helvetica, Arial, sans-serif;
   font-size: 16px;
@@ -77,6 +90,10 @@
   height: 100%;
   padding: 0 15px;
   transition: color 0.2s;
+}
+
+.pick-random:hover {
+  color: #02203c;
 }
 
 .columns-container {

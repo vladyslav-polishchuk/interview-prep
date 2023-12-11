@@ -2,7 +2,8 @@ import { useEffect, useState } from 'react';
 import QuestionCard from '../QuestionCard';
 import { Question } from '@/lib/shared/types/question';
 import styles from './index.module.css';
-import Image from 'next/image';
+import FilterSvg from '../../../../../public/filter.svg';
+import PickRandomSvg from '../../../../../public/pick-random.svg';
 
 const useQuestions = () => {
   const [questions, setQuestions] = useState<Question[]>([]);
@@ -52,32 +53,24 @@ export default function QuestionsContainer() {
       <div className={styles['grouping-container']}>
         <div className={styles.random}>
           <button className={styles['pick-random']}>
-            <Image
-              className={styles.icon}
-              src="/pick-random.svg"
-              alt="Pick Random"
-              width={20}
-              height={20}
-            />
+            <PickRandomSvg className={styles.icon} />
             Pick Random
           </button>
         </div>
         <div className={styles.groupby}>
-          <button className={styles['group-button']}>
-            Group by Difficulty
-          </button>
-          <button className={styles['group-button']}>Group by Category</button>
-          <button className={styles['group-button']}>Group Randomly</button>
+          <div className={styles.groupby2}>
+            <button className={styles['group-button']}>
+              Group by Difficulty
+            </button>
+            <button className={styles['group-button']}>
+              Group by Category
+            </button>
+            <button className={styles['group-button']}>Group Randomly</button>
+          </div>
         </div>
         <div className={styles.filter}>
           <button className={styles['filter-button']}>
-            <Image
-              className={styles.icon}
-              src="/filter.svg"
-              alt="Filters"
-              width={20}
-              height={20}
-            />
+            <FilterSvg className={styles.icon} />
             Filters
           </button>
         </div>

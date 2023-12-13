@@ -3,6 +3,7 @@ import HomeButton from "../HomeButton";
 import styles from "./index.module.css";
 import QuestionsListSvg from "../../../../../public/questions-list.svg";
 import SplitPane from "../../split-pane";
+import QuestionPanel from "./question-panel";
 
 export default function EditorContainer() {
   return (
@@ -16,13 +17,15 @@ export default function EditorContainer() {
       <div className={styles.main}>
         <SplitPane orientation="vertical">
           <SplitPane orientation="horizontal">
-            <div>Top Left</div>
-            <div>Bottom Left</div>
+            <QuestionPanel />
+
+            <QuestionPanel />
           </SplitPane>
 
           <SplitPane orientation="horizontal">
-            <div>Top Right</div>
-            <div>Bottom Right</div>
+            <QuestionPanel />
+
+            <QuestionPanel />
           </SplitPane>
         </SplitPane>
       </div>

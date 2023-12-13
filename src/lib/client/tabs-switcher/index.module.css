@@ -1,0 +1,49 @@
+﻿.root {
+  background-color: #001528;
+  border-radius: 4px;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  overflow: hidden;
+  position: relative;
+}
+
+.tabs {
+  display: flex;
+  flex: 0 0 40px;
+  position: relative;
+  z-index: 7;
+  background-color: #15314b;
+  box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.5);
+}
+
+.button {
+  border-radius: 0;
+  color: #fff;
+  font-size: 14px;
+  font-weight: 600;
+  height: 100%;
+  padding: 0 15px;
+  align-items: center;
+  background-color: transparent;
+  border: none;
+  display: inline-flex;
+  flex-direction: row;
+  justify-content: center;
+  position: relative;
+  transition: transform 0.2s, background-color 0.2s, padding 0.4s,
+    box-shadow 0.2s, border 0.2s;
+  white-space: nowrap;
+}
+
+.button[aria-pressed="true"] {
+  background-color: #001528;
+}
+
+.title {
+  align-items: center;
+  display: flex;
+  justify-content: center;
+  white-space: nowrap;
+  width: 100%;
+}

@@ -10,7 +10,7 @@
 
 .grouping-container {
   display: grid;
-  grid-template: 'random groupby filter' 50px/170px auto 170px;
+  grid-template: "random groupby filter" 50px/170px auto 170px;
   margin: 100px auto 30px;
   max-width: 1600px;
   padding: 0 5px;
@@ -44,7 +44,7 @@
 }
 
 .group-button:hover {
-  color: #02203c;
+  color: var(--color-secondary);
 }
 
 .filter {
@@ -52,7 +52,7 @@
 }
 
 .filter-button {
-  color: #02203c;
+  color: var(--color-secondary);
   align-items: center;
   border: none;
   border-radius: 4px;
@@ -68,7 +68,7 @@
 }
 
 .filter-button:hover {
-  color: #02203c;
+  color: var(--color-secondary);
 }
 
 .icon {
@@ -93,7 +93,7 @@
 }
 
 .pick-random:hover {
-  color: #02203c;
+  color: var(--color-secondary);
 }
 
 .columns-container {

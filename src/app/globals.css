@@ -4,10 +4,15 @@
 
 :root {
   --color-primary: #626ee3;
+  --color-secondary: #02203c;
 }
 
 body {
   background-color: #f6f9fc;
+  font-family: Open Sans, Helvetica, Arial, sans-serif;
+  font-size: 16px;
+  line-height: 1.42857143;
+  margin: 0;
 }
 
 h1 {

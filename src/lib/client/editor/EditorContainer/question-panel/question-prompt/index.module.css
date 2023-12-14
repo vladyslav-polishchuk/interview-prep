@@ -1,0 +1,42 @@
+﻿.root {
+  padding: 20px;
+  overflow: auto;
+}
+
+.header {
+  color: #fff;
+  align-items: center;
+  display: flex;
+  flex-wrap: wrap;
+  font-size: 14px;
+  margin: 0 0 10px;
+}
+
+.headerSection {
+  align-items: center;
+  display: flex;
+  flex: 0 0 auto;
+  margin: 0 15px 10px 0;
+}
+
+.headerSectionKey {
+  font-weight: 600;
+  margin: 0 5px 0 0;
+}
+
+.categoryHidden {
+  filter: blur(4px);
+  cursor: pointer;
+}
+
+.title {
+  color: #fff;
+  font-size: 24px;
+  margin: 0 0 15px;
+}
+
+.example {
+}
+
+.hints {
+}

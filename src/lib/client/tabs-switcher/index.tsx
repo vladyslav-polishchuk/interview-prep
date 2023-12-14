@@ -12,7 +12,8 @@ export interface TabsSwitcherProps {
 }
 
 export default function TabsSwitcher({ tabs }: TabsSwitcherProps) {
-  const [selectedTab, setSelectedTab] = useState(tabs[0]);
+  const [selectedTabId, setSelectedTabId] = useState(tabs[0].id);
+  const selectedTab = tabs.find((tab) => tab.id === selectedTabId)!;
 
   return (
     <div className={styles.root}>
@@ -21,10 +22,10 @@ export default function TabsSwitcher({ tabs }: TabsSwitcherProps) {
           <button
             key={tab.id}
             className={styles.button}
-            aria-pressed={tab === selectedTab}
+            aria-pressed={tab.id === selectedTabId}
             onClick={() => {
-              if (selectedTab !== tab) {
-                setSelectedTab(tab);
+              if (selectedTabId !== tab.id) {
+                setSelectedTabId(tab.id);
               }
             }}
           >
@@ -32,7 +33,7 @@ export default function TabsSwitcher({ tabs }: TabsSwitcherProps) {
           </button>
         ))}
       </div>
-      <div className={styles.content}>{selectedTab.content}</div>
+      <>{selectedTab.content}</>
     </div>
   );
 }

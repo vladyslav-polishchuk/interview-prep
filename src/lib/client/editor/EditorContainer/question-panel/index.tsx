@@ -1,11 +1,25 @@
 ﻿import TabsSwitcher from "@/lib/client/tabs-switcher";
+import type { Question } from "@/lib/shared/types/question";
+import QuestionPrompt from "./question-prompt";
 
-const tabs = [
-  { id: "prompt", title: "Prompt", content: <div>prompt</div> },
-  { id: "solution", title: "Solution", content: <div>solution</div> },
-  { id: "explanation", title: "Explanation", content: <div>explanation</div> },
-];
+export interface QuestionPanelProps {
+  question: Question | null;
+}
 
-export default function QuestionPanel() {
+export default function QuestionPanel({ question }: QuestionPanelProps) {
+  const tabs = [
+    {
+      id: "prompt",
+      title: "Prompt",
+      content: <QuestionPrompt question={question} />,
+    },
+    { id: "solutions", title: "Solutions", content: <div>solution</div> },
+    {
+      id: "explanation",
+      title: "Explanation",
+      content: <div>explanation</div>,
+    },
+  ];
+
   return <TabsSwitcher tabs={tabs} />;
 }

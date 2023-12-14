@@ -1,5 +1,9 @@
-import { questions } from '../../../../scripts/questions';
+import { questions } from "../../../../scripts/questions";
 
-export const read = () => {
+export const read = (id?: string) => {
+  if (id) {
+    return questions.find((question) => question.id === id);
+  }
+
   return questions;
 };

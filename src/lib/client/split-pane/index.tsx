@@ -46,7 +46,11 @@ export default function SplitPane({ children, orientation }: SplitPaneProps) {
       className={styles.root}
       style={{ flexDirection: isHorizontal ? "column" : "row" }}
     >
-      <div style={{ flex: `${firstPaneSize} 1 0%` }} ref={firstPaneRef}>
+      <div
+        className={styles.pane}
+        style={{ flex: `${firstPaneSize} 1 0%` }}
+        ref={firstPaneRef}
+      >
         {children[0]}
       </div>
       <div
@@ -54,7 +58,11 @@ export default function SplitPane({ children, orientation }: SplitPaneProps) {
         onMouseDown={onMouseDown}
         style={{ cursor: isHorizontal ? "row-resize" : "col-resize" }}
       />
-      <div style={{ flex: `${secondPaneSize} 1 0%` }} ref={secondPaneRef}>
+      <div
+        className={styles.pane}
+        style={{ flex: `${secondPaneSize} 1 0%` }}
+        ref={secondPaneRef}
+      >
         {children[1]}
       </div>
     </div>

@@ -9,4 +9,5 @@ export interface Question {
   id: string;
   name: string;
   complexity: Complexity;
+  prompt: string;
 }

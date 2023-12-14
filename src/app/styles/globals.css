@@ -2,6 +2,9 @@
 @tailwind components;
 @tailwind utilities;
 
+@import url(./scrollbar.css);
+@import url(./editor.css);
+
 :root {
   --color-primary: #626ee3;
   --color-secondary: #02203c;
